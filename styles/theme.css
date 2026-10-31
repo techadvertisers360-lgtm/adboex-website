@@ -1,0 +1,89 @@
+/* =============================================================================
+   THEME — controls every colour, gradient, corner radius, font and shadow on
+   the whole website. Change a value here and it updates everywhere.
+   Brand accent #4089F0 (blue, from the Adboex logo), Plus Jakarta Sans,
+   dark background #131313.
+   Tip: keep text colours readable — body text must stay light enough on the
+   dark background (WCAG AA contrast 4.5:1 or more).
+   ============================================================================= */
+
+:root {
+  /* ---------- Backgrounds ---------- */
+  --color-bg: #131313;            /* page background */
+  --color-surface: #1b1b1b;       /* cards, panels, menus */
+  --color-surface-2: #222222;     /* raised elements inside cards, inputs */
+  --color-overlay: rgb(10 10 10 / 0.72); /* behind popups (with blur) */
+
+  /* ---------- Borders ---------- */
+  --color-border: rgb(255 255 255 / 0.10);        /* default card border */
+  --color-border-strong: rgb(255 255 255 / 0.18); /* hover / active border */
+
+  /* ---------- Text ---------- */
+  --color-heading: #ffffff;       /* all headings */
+  --color-body: #a3a3a3;          /* paragraphs — 7.4:1 contrast on #131313 */
+  --color-muted: #8f8f8f;         /* small print — 5.4:1 contrast on #1b1b1b */
+
+  /* ---------- Brand accents ---------- */
+  --color-accent: #4089f0;        /* MAIN BRAND COLOUR: buttons, icons, pill dots, links, highlights */
+  --color-accent-2: #2b6fd6;      /* deeper blue: secondary accents, glows */
+  --color-on-accent: #ffffff;     /* text & icons ON accent colour (buttons, check icons, active tabs) */
+  --color-success: #4ade80;
+  --color-error: #f87171;
+
+  /* ---------- Gradients ----------
+     --gradient-brand is used on buttons, highlighted words and glows.
+     Buttons use a 200% wide background so the colours "shift" on hover. */
+  --gradient-brand: linear-gradient(100deg, #4089f0 0%, #3a82ec 50%, #2f74db 100%); /* starts at #4089F0, deepens so white text stays readable */
+  --gradient-text: linear-gradient(90deg, #9cc5f9 0%, #4089f0 100%);
+  --gradient-border: linear-gradient(135deg, rgb(64 137 240 / 0.8), rgb(156 197 249 / 0.35));
+  --glow-hero: radial-gradient(60% 50% at 50% 0%, rgb(64 137 240 / 0.2) 0%, transparent 70%);
+  --glow-pricing: radial-gradient(50% 45% at 50% 40%, rgb(43 130 247 / 0.18) 0%, transparent 70%);
+  --glow-card: 0 0 0 1px rgb(64 137 240 / 0.45), 0 12px 40px -12px rgb(64 137 240 / 0.35);
+
+  /* ---------- Corner radius ---------- */
+  --radius-card: 1rem;            /* rounded-2xl cards */
+  --radius-card-lg: 1.5rem;       /* big feature / pricing cards */
+  --radius-button: 999px;         /* pill buttons */
+  --radius-pill: 999px;           /* "• About us" labels, industry pills */
+  --radius-input: 0.75rem;        /* form fields */
+
+  /* ---------- Fonts ----------
+     The font file itself is loaded in app/layout.tsx (next/font, self-hosted).
+     To switch fonts, change the import there; this variable follows it. */
+  --font-sans: var(--font-jakarta), "Plus Jakarta Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: var(--font-geist-mono), "Geist Mono", ui-monospace, "SFMono-Regular", Menlo, monospace; /* navbar + nav buttons */
+
+  /* ---------- Type scale (desktop, from the reference) ---------- */
+  --text-display: 3.75rem;        /* 60px hero H1 */
+  --text-h2: 2.625rem;            /* 42px section headings */
+  --text-h3: 1.75rem;             /* 28px card headings */
+  --text-h4: 1.5rem;              /* 24px small headings */
+  --text-body: 1rem;              /* 16px paragraphs */
+  --text-small: 0.875rem;         /* 14px labels, footer */
+  --leading-display: 1.1;
+  --leading-heading: 1.24;        /* 42/52 */
+  --leading-body: 1.625;          /* 16/26 */
+  --tracking-heading: -0.04em;    /* tight headings like the reference */
+  --tracking-body: -0.02em;
+
+  /* ---------- Layout ---------- */
+  --container-max: 1240px;        /* max content width */
+  --header-height: 84px;
+  --section-space: 7.5rem;        /* vertical padding between sections (desktop) */
+  --section-space-mobile: 4.5rem;
+
+  /* ---------- Motion ----------
+     Speeds and on/off switches live in /content/animations.ts.
+     This is only the easing curve shared by all CSS animations. */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Mobile type scale */
+@media (max-width: 767px) {
+  :root {
+    --text-display: 2.375rem;     /* 38px */
+    --text-h2: 1.875rem;          /* 30px */
+    --text-h3: 1.5rem;            /* 24px */
+    --text-h4: 1.25rem;           /* 20px */
+  }
+}

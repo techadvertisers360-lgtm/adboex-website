@@ -1,0 +1,38 @@
+# Quality check — runs on every push to main and on every pull request.
+# It does NOT deploy: Hostinger deploys automatically from GitHub (Deploy from Git).
+# A red ✖ here means something would break the site or its SEO — open the run,
+# read the failing step, fix it, and push again.
+name: Check
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+concurrency:
+  group: check-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  check:
+    name: Lint, build and SEO check
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Get the code
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install packages
+        run: npm ci
+
+      # lint + clean production build + SEO check (one H1, titles, descriptions,
+      # canonicals, alt text, broken links, sitemap, robots, llms.txt, RSS)
+      - name: Run all checks
+        run: npm run check
